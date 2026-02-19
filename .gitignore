@@ -11,5 +11,5 @@
 *.iml
 
 #Librerias externas
-/libs/
+**/libs/
 *.jar
