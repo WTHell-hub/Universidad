@@ -9,3 +9,7 @@
 #Configuración de Intellij
 .idea/
 *.iml
+
+#Librerias externas
+/libs/
+*.jar
