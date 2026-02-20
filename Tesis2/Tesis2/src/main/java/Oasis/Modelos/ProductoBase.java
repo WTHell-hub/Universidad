@@ -66,6 +66,18 @@ public class ProductoBase {
         this.cantidad = cantidad;
     }
 
+    public void setPrecioC(double precioC) {
+        this.precioC = precioC;
+    }
+
+    public void setPrecioV(double precioV) {
+        this.precioV = precioV;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
     @Override
     public String toString() {
         return "Almacen{" +

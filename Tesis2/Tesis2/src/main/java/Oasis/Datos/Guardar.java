@@ -85,10 +85,12 @@ public class Guardar {
             conn = GestorBD.getConn();
             conn.setAutoCommit(false);
 
-            try (PreparedStatement stmtComprobar = conn.prepareStatement("UPDATE cuadre SET dinero = ?, faltante = ? WHERE id = "+idCuadreHistorial)) {
+            try (PreparedStatement stmtComprobar = conn.prepareStatement("UPDATE cuadre SET dinero = ?, faltante = ? WHERE id = ?")) {
 
                 stmtComprobar.setDouble(1, dinero);
                 stmtComprobar.setDouble(2, faltante);
+                stmtComprobar.setInt(3, idCuadreHistorial);
+
                 int rsComprobar = stmtComprobar.executeUpdate();
 
                 if (rsComprobar == 1) {
@@ -113,11 +115,13 @@ public class Guardar {
 
     public static void UpdateProductos(Connection conn, ArrayList<ModeloTabla> list, int idCuadreHistorial) {
         try {
-            PreparedStatement stmtProducto = conn.prepareStatement(
-                    "UPDATE producto SET stock_posterior = ?, cantidad_vendida = ? WHERE nombre = ? AND id = ?"
-            );
-
             for (ModeloTabla p: list) {
+
+                PreparedStatement stmtProducto = conn.prepareStatement(
+                        "UPDATE producto SET stock_posterior = ?, cantidad_vendida = ? WHERE nombre = ? AND id_cuadre = ?"
+                );
+
+
                 stmtProducto.setInt(1, p.getCuadre_posterior());
                 stmtProducto.setInt(2, p.getCantVendida());
                 stmtProducto.setString(3, p.getNombre());

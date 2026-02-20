@@ -208,6 +208,8 @@ public class CuadreController {
 
                 dineroEsperado += cantVendida * p.getPrecioV();
 
+                System.out.println(cantVendida+" * "+p.getPrecioV());
+
                 modeloAGuardar.add(new ModeloTabla(p.getName(), (int) p.getStock(), p.getCantidad(), cantVendida));
             }
 

@@ -55,15 +55,17 @@ public class Controladora {
         }
     }
 
-    public static void UpdateProductos(String name, int cantidad, int idCuadre) {
+    public static void UpdateProductos(String name, int cantidad, int cantidadVendida, int idCuadre) {
         try {
             Connection conn = GestorBD.getConn();
 
             try (PreparedStatement stmt = conn.prepareStatement(
-                    "UPDATE producto SET stock_posterior = ? WHERE nombre = ? AND id_cuadre = "+idCuadre
+                    "UPDATE producto SET stock_posterior = ?, cantidad_vendida = ? WHERE nombre = ? AND id_cuadre = ?"
             )) {
                 stmt.setInt(1, cantidad);
-                stmt.setString(2, name);
+                stmt.setInt(2, cantidadVendida);
+                stmt.setString(3, name);
+                stmt.setInt(4, idCuadre);
 
                 stmt.executeUpdate();
             }
